@@ -15,6 +15,9 @@ export class PacienteService {
   
   constructor(private http:HttpClient) { 
   }
+  listarPageable(p: number, s:number){
+    return this.http.get<any>(`${this.url}/pageable?page=${p}&size=${s}`)
+  }
   listar(){
     return this.http.get<Paciente[]>(this.url);
   }
@@ -32,4 +35,5 @@ export class PacienteService {
   eliminar(idPaciente: number){
     return this.http.delete(`${this.url}/${idPaciente}`);
   }
+  
 }

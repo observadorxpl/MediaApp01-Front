@@ -18,4 +18,14 @@
     overflow: auto;
     max-height: 500px;
   }
-  
+
+  .example-container{
+    display: flex;
+    flex-direction: column;
+}
+.example-full-width > * {
+    width: 100%;
+}
+table {
+  width: 100%;
+}

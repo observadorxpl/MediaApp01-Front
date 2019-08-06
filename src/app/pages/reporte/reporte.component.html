@@ -1,0 +1,26 @@
+<mat-toolbar>Reporte de Consultas</mat-toolbar>
+
+<button mat-button color="primary" (click)="cambiar('line')">Lineal</button>
+<button mat-button color="primary" (click)="cambiar('bar')">Barras</button>
+<button mat-button color="primary" (click)="cambiar('doughnut')">Rosquilla</button>
+<button mat-button color="primary" (click)="cambiar('radar')">Radar</button>
+<button mat-button color="primary" (click)="cambiar('pie')">Pie</button>
+
+<div [hidden]="!chart" class="canvas-view">
+  <canvas id="canvas">{{ chart }}</canvas>
+</div>
+
+<button mat-button color="primary" (click)="generarReporte()">PDF</button>
+<button mat-button color="primary" (click)="descargarReporte()">Descargar PDF</button>
+
+<pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
+<button mat-button color="primary" onclick="document.getElementById('fileToUpload').click()">Seleccionar Archivo</button>
+<input type=file id="fileToUpload" style="display: none" (change) = "selectFile($event)" multiple>
+<p>{{labelFile}}</p>
+
+<button mat-button color="primary" [disabled] ="!selectedFiles" (click) = "upload()">Subir archivo</button>
+
+<button mat-button color = "primary" (click) = "accionImagen('M')" >Mostrar</button>
+<button mat-button color = "primary" (click) = "accionImagen('O')">Ocultar</button>
+<br>
+<img mat-card-image  [src]="imagenData" *ngIf = "imagenEstado" width="100">

@@ -17,6 +17,8 @@ export class PacienteComponent implements OnInit {
   sort:MatSort;
   @ViewChild(MatPaginator)
   paginator:MatPaginator;
+
+  numRegistros: number = 0;
   ngOnInit() {
     this.pacienteService.pacienteCambio.subscribe(data =>{
       this.dataSource = new MatTableDataSource(data);
@@ -29,14 +31,26 @@ export class PacienteComponent implements OnInit {
         duration: 2000
       });
     });
-    
+
+    this.pacienteService.listarPageable(0, 10).subscribe(data => {
+      console.log(data);
+      this.dataSource = new MatTableDataSource(data.content);
+      this.dataSource.paginator = this.paginator;
+      this.numRegistros = data.totalElements;
+      this.dataSource.sort = this.sort;
+    });
+    /*
     this.pacienteService.listar().subscribe(data => {
       console.log(data);
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator
-    });
+    });*/
   }
+
+
+
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -48,6 +62,12 @@ export class PacienteComponent implements OnInit {
       })
     });
     this.pacienteService.mensajeCambio.next("Se eliminó");
+  }
+  mostrarMas(e: any){
+    this.pacienteService.listarPageable(e.pageIndex, e.pageSize).subscribe(data =>{
+      this.dataSource = new MatTableDataSource(data.content);
+      this.dataSource.sort = this.sort;
+    });
   }
 
 }

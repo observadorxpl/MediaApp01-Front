@@ -1,0 +1,86 @@
+<mat-toolbar>Registro de consultas</mat-toolbar>
+
+<div class="example-container">
+  <mat-form-field>
+    <mat-label>Paciente</mat-label>
+    <mat-select [(value)] = "idPacienteSeleccionado">
+      <mat-option *ngFor="let p of pacientes" [value]="p.idPaciente">
+        {{p.nombres}} {{p.apellidos}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Especialidad</mat-label>
+    <mat-select [(value)] = "idEspecialidadSeleccionada">
+      <mat-option *ngFor="let e of especialidades" [value]="e.idEspecialidad">
+        {{e.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Medico</mat-label>
+    <mat-select [(value)] = "idMedicoSeleccionado">
+      <mat-option *ngFor="let m of medicos" [value]="m.idMedico">
+        {{m.nombres}} {{m.apellidos}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha"
+      [(ngModel)]="fechaSeleccionada" [min]="minFecha">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <!--Para cambiar al formato latino: Se debe agregar provide: MAT_DATE_LOCALE, useValue: 'es-ES'
+    usando [matDatepickerFilter]="myFilter" y programandolo se puede limitar los dás que no son laborables
+    : SABADO Y DOMINGO
+  -->
+
+  <mat-form-field>
+    <input matInput placeholder="Diagnostico" [(ngModel)]="diagnostico">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Tratamiento" [(ngModel)]="tratamiento">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="agregar()">Agregar</button>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let x of detalle; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{i+1   }}{{    x.diagnostico}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Ver tratamiento
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field class="mat-form-field70">
+        <textarea matInput placeholder="Tratamiento" value="{{x.tratamiento}}"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="warn" class="mat-form-field30" (click)="removerDetalle(i)">Remover</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-form-field>
+    <mat-label>Examen</mat-label>
+    <mat-select [(value)]="idExamenSeleccionado">
+      <mat-option *ngFor="let ex of examenes" [value]="ex.idExamen">
+        {{ex.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="agregarExamen()">Agregar Examen</button>
+
+
+  <mat-toolbar-row *ngFor="let e of examenesSeleccionado; let i = index">
+    <span>{{e.nombre}}</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color = "warn" (click) = "removerExamen(i)">Remover Examen</button>
+  </mat-toolbar-row>
+
+  <button mat-raised-button color = "accent" [disabled] = "botonRegistrarConsulta()" (click)= "registrarConsulta()">Registrar Consulta</button>
+</div>

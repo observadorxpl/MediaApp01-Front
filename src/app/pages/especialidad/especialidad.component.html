@@ -1,3 +1,37 @@
-<p>
-  especialidad works!
-</p>
+<mat-toolbar>Especialidades</mat-toolbar>
+<div class="example-full-width">
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+</div>
+<div class="mat-table">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="idEspecialidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.idEspecialidad}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> ACCIONES </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color = "primary" (click)= "openDialog(element)">Actualizar</button>
+        <button mat-button color = "accent" (click) = "eliminar(element.idEspecialidad)">Eliminar</button>
+      </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+<button mat-fab (click) = openDialog() style="float: right">
+  <mat-icon>create</mat-icon>
+</button>

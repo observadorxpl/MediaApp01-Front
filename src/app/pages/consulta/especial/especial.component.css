@@ -1,0 +1,21 @@
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    padding-top: 1.5rem;
+  }
+.example-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.mat-form-field30{
+  display: inline-block;
+  width: 15%;
+}
+.mat-form-field70{
+  display: inline-block;
+  width: 70%;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}

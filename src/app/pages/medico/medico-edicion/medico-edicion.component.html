@@ -1,0 +1,29 @@
+<mat-card>Paciente edicion</mat-card>
+<form class="example-container" #frmMedicoEdicion = "ngForm" [formGroup] = "form" (ngSubmit) = "operar()">
+  <div class="exmple-full-width" [hidden] = "true">
+  <mat-form-field class="example-full-width" >
+    <input matInput placeholder="ID" required formControlName = "id">
+  </mat-form-field>
+  </div>
+  <mat-form-field class="example-full-width">
+    <input matInput required placeholder="Nombres" formControlName = "nombres">
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width">
+    <input matInput required placeholder="Apellidos" formControlName = "apellidos">
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width">
+    <input matInput required placeholder="CMP"formControlName = "cmp" >
+  </mat-form-field>
+
+  
+  <button mat-raised-button color="primary" [disabled] = "frmMedicoEdicion.invalid" type="submit">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <button mat-raised-button color= "accent" routerLink = "/medico" type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button>
+</form>

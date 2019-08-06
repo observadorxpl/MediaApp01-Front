@@ -9,7 +9,7 @@
 
 <div class="example-header">
   <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
   </mat-form-field>
 </div>
 <div class="mat-table">
@@ -73,7 +73,7 @@
       <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
     </table>
   </div>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons [length] = "numRegistros" (page) = mostrarMas($event)></mat-paginator>
     <button mat-fab color="accent" style="float: right" routerLink = "/paciente/nuevo">
       <mat-icon>create</mat-icon>
     </button>

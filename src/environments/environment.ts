@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  HOST_URL: 'http://localhost:9797'
+  HOST_URL: 'http://localhost:9797',
+  TOKEN_AUTH_USERNAME: 'mitomediapp',
+  TOKEN_AUTH_PASSWORD: 'mito89codex',
+  TOKEN_NAME: 'access_token',
+  REINTENTOS: 3
 };
 
 /*

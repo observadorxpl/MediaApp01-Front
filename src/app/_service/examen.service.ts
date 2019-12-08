@@ -14,6 +14,8 @@ export class ExamenService {
   mensajeCambio = new Subject<string>();
   
   constructor(private http: HttpClient) { }
+  
+  
   listar(){
     return this.http.get<Examen[]>(this.url);
   }
